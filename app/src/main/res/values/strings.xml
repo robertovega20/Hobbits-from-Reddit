@@ -1,0 +1,19 @@
+<resources>
+    <string name="base_url">https://www.reddit.com/r/</string>
+
+    <string name="app_name">workyapp</string>
+    <string name="error_polite">Lo sentimos, hubo un error, vuelve a intentarlo</string>
+
+    <string name="character_frodo">Frodo</string>
+    <string name="character_bilbo">Bilbo</string>
+    <string name="character_sam">Sam</string>
+    <string name="character_samsagaz">Samsagaz</string>
+    <string name="character_meriadoc">Meriadoc</string>
+    <string name="character_merry">Merry</string>
+    <string name="character_peregrin">Peregrin</string>
+    <string name="character_pippin">Pippin</string>
+    <string name="character_smeagol">Smeagol</string>
+    <string name="character_gollum">Gollum</string>
+
+
+</resources>
