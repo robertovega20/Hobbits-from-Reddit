@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.workyapp.BuildConfig
 import com.example.workyapp.R
 import com.example.workyapp.WorkyApplication
+import com.example.workyapp.util.AuthInterceptor
 import com.tickaroo.tikxml.TikXml
 import com.tickaroo.tikxml.converter.htmlescape.HtmlEscapeStringConverter
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
@@ -13,10 +14,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
-import org.simpleframework.xml.convert.AnnotationStrategy
-import org.simpleframework.xml.core.Persister
 import retrofit2.Retrofit
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -33,6 +32,7 @@ object NetworkDataModule {
         @ApplicationContext context: Context
     ): OkHttpClient {
         val builder = OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor(context))
         if (BuildConfig.DEBUG) {
             val interceptorFlipper =
                 (context.applicationContext as WorkyApplication).initializeFlipper()
@@ -55,7 +55,6 @@ object NetworkDataModule {
         Retrofit.Builder()
             .baseUrl(context.getString(R.string.base_url))
             .client(okHttpClient)
-            //.addConverterFactory(SimpleXmlConverterFactory.createNonStrict(Persister(AnnotationStrategy())))
             .addConverterFactory(
                 TikXmlConverterFactory.create(
                     TikXml.Builder()
@@ -64,5 +63,6 @@ object NetworkDataModule {
                         .build()
                 )
             )
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
 }

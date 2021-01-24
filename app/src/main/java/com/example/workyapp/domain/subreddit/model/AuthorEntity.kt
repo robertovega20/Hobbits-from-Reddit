@@ -1,4 +1,4 @@
-package com.example.workyapp.domain.model
+package com.example.workyapp.domain.subreddit.model
 
 data class AuthorEntity(
     var name: String,

@@ -1,4 +1,4 @@
-package com.example.workyapp.domain
+package com.example.workyapp.domain.subreddit
 
 import javax.inject.Inject
 
