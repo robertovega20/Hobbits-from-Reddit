@@ -19,7 +19,7 @@ First, these 100 posts are separeted in groups defined by the name of next Hobbi
  
 If these names form part of the title of the post, that post is going to be inside a collection of that Hobbit. There are Hobbits that have two names so if a title has any of these names, it will be in the same collection. 
 
-Next step is to order the Hobbit collections by descending order in function of the number of posts that have each one. Now there is a list of collections that can be printed in console in JSON format and it can be seen with logcat window on Android studio once the app is running. 
+Next step is to order the Hobbit collections by descending order in function of the number of posts that have each one. If there are more than one collection with the biggest size, the winner will be selected alphabetically. Now there is a list of collections that can be printed in console in JSON format and it can be seen with logcat window on Android studio once the app is running. 
 
 ![alt text](https://github.com/robertovega20/Projects-Images/blob/master/Screen%20Shot%202021-01-24%20at%2018.01.20.png)
 
