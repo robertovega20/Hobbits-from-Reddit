@@ -123,20 +123,27 @@ class RedditRepositoryImp @Inject constructor(
 
     private fun selectPostToShow(allHobbitsPosts: AllHobbitsPosts): EntryEntity? {
         val biggerHobbit = allHobbitsPosts.allPosts.firstOrNull()?.posts
-        val postsWithImage = biggerHobbit?.filter { it.entry?.mediaEntity?.url == ""  }
-        if (postsWithImage != null) {
-            var length = 0
-            var indexToTake = 0
-            for ((index, hobbit) in postsWithImage.withIndex()) {
-                if(hobbit.entry?.title?.length!! > length){
-                    indexToTake = index
-                    length = hobbit.entry?.title?.length!!
-                }
-            }
-            return biggerHobbit[indexToTake].entry
+        val postsWithImage = biggerHobbit?.filter { it.entry?.mediaEntity?.url != ""  }
+        var index = 0
+        return if (postsWithImage != null) {
+            index = getBiggestTitleIndex(postsWithImage)
+            postsWithImage[index].entry
         } else {
-            return biggerHobbit?.firstOrNull()?.entry
+            index = biggerHobbit?.let { getBiggestTitleIndex(it) } ?: 0
+            biggerHobbit?.get(index)?.entry
         }
+    }
+
+    private fun getBiggestTitleIndex(entryList: List<HobbitEntity>): Int {
+        var length = 0
+        var indexToTake = 0
+        for ((index, hobbit) in entryList.withIndex()) {
+            if(hobbit.entry?.title?.length!! > length){
+                indexToTake = index
+                length = hobbit.entry?.title?.length!!
+            }
+        }
+        return indexToTake
     }
 
     private fun printPostsToConsole(hobbitsOrdered: AllHobbitsPosts) {
